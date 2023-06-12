@@ -51,6 +51,11 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Ignore all node_modules & .next folder
+*node_modules/*
+*.next*
+
+
 # Optional eslint cache
 .eslintcache
 

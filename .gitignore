@@ -133,3 +133,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#pack-lock
+client/package-lock.json
+client/package.json

@@ -139,7 +139,5 @@ dist
 
 *next/*
 
-<<<<<<< HEAD
 *client/tailwind.config.js*
-=======
->>>>>>> origin/main
+client/postcss.config.js

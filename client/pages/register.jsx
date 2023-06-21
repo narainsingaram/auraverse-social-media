@@ -56,10 +56,10 @@ return (
 
         <div>
         <label>Choose a Question</label>
-        <select onChange={(e) => setQuestion(e.target.value)}>
+        <select>
             <option>What is your favorite artist?</option>
             <option>What is your mother's name?</option>
-            <option>Is your dad alive or dead?</option>
+            <option>Are you gay or not?</option>
         </select>
 
         <input

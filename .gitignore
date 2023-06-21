@@ -134,8 +134,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-client/package-lock.json
-client/package.json
+*package-lock.json*
+*package.json*
 
 *next/*
 
+<<<<<<< HEAD
+*client/tailwind.config.js*
+=======
+>>>>>>> origin/main

@@ -2,8 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post("/register", (req, res) => {
-    console.log('REGISTER ENDPOINT ->', req.body);
-});
+//controllers
+import { register } from "../controllers/auth";
+
+router.post("/register", register);
 
 module.exports = router;

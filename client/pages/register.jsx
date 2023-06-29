@@ -24,10 +24,10 @@ const handleSubmit = (e) => {
         name,
         email,
         password,
+        secret,
     })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
-    console.log(name,email,password)
 };
 
 return (

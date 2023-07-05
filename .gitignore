@@ -139,5 +139,9 @@ dist
 
 *next/*
 
+*server/package-lock.json*
+
 *client/tailwind.config.js*
 client/postcss.config.js
+
+

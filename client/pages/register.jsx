@@ -1,14 +1,17 @@
 import { useState } from "react";
+import React from 'react';
 import axios from "axios";
 import {
 Card,
 Spacer,
 Button,
 Text,
+Link,
 Input,
 Row,
 Checkbox,
 Container,
+useInput,
 } from "@nextui-org/react";
 import {toast} from "react-toastify";
 import {Modal} from 'antd';
@@ -34,6 +37,25 @@ const handleSubmit = async (e) => {
         toast.error(err.response.data);
     }
 };
+
+const { value, reset, bindings } = useInput("");
+
+const validateEmail = (value) => {
+    return value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+};
+
+const helper = React.useMemo(() => {
+    if (!value)
+    return {
+        text: "",
+        color: "",
+    };
+    const isValid = validateEmail(value);
+    return {
+    text: isValid ? "Correct email" : "Enter a valid email",
+    color: isValid ? "success" : "error",
+    };
+}, [value]);
 
 return (
 <div class="bg-white">
@@ -79,33 +101,35 @@ return (
         </p>
 
         <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
-        <div class="col-span-6 sm:col-span-3">
-            <label
-            for="FirstName"
-            class="block text-sm font-medium text-gray-700"
-            >
-            First Name
-            </label>
-
-            <input
+        <div class="col-span-6">
+            <Input 
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+            label="Full Name" 
+            placeholder="Guillermo Rauch" 
+            fullWidth
             />
         </div>
 
         <div class="col-span-6">
-            <label for="Email" class="block text-sm font-medium text-gray-700">
-            Email
-            </label>
 
-            <input
-            type="email"
+        <Input
+            {...bindings}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
+            clearable
+            shadow={false}
+            onClearClick={reset}
+            status={helper.color}
+            color={helper.color}
+            helperColor={helper.color}
+            helperText={helper.text}
+            type="email"
+            label="Email"
+            placeholder="With regex validation"
+            fullWidth
+        />
         </div>
 
         <div class="col-span-6 sm:col-span-3">
@@ -190,12 +214,15 @@ return (
     <div className="row">
         <div className="col">
             <Modal
-                title="Successful Registration"
+                title="Time to Explore Auraverse"
                 visible={ok}
                 onCancel={() => setOk(false)}
                 footer={null}
             >
-            <p>Nice!</p>
+            <p>Congratulations! You just created an account.</p>
+                <Link href="/login">
+                    Time to Login!
+                </Link>
             </Modal>
         </div>
     </div>

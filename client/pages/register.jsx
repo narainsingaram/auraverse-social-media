@@ -38,24 +38,6 @@ const handleSubmit = async (e) => {
     }
 };
 
-const { value, reset, bindings } = useInput("");
-
-const validateEmail = (value) => {
-    return value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
-};
-
-const helper = React.useMemo(() => {
-    if (!value)
-    return {
-        text: "",
-        color: "",
-    };
-    const isValid = validateEmail(value);
-    return {
-    text: isValid ? "Correct email" : "Enter a valid email",
-    color: isValid ? "success" : "error",
-    };
-}, [value]);
 
 return (
 <div class="bg-white">
@@ -112,39 +94,29 @@ return (
             />
         </div>
 
-        <div class="col-span-6">
-
-        <Input
-            {...bindings}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            clearable
-            shadow={false}
-            onClearClick={reset}
-            status={helper.color}
-            color={helper.color}
-            helperColor={helper.color}
-            helperText={helper.text}
-            type="email"
-            label="Email"
-            placeholder="With regex validation"
-            fullWidth
-        />
+        <div class="col-span-6 sm:col-span-3">
+            <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                clearable
+                shadow={false}
+                type="email"
+                label="Email"
+                placeholder="With regex validation"
+                fullWidth
+            />
         </div>
 
         <div class="col-span-6 sm:col-span-3">
-            <label
-            for="Password"
-            class="block text-sm font-medium text-gray-700"
-            >
-            Password
-            </label>
-
-            <input
-            type="password"
+            <Input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+            clearable
+            shadow={false}
+            type="password"
+            label="Password"
+            placeholder="At least 8 characters"
+            fullWidth
             />
         </div>
 

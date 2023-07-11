@@ -78,8 +78,8 @@ return (
         </h1>
 
         <p class="mt-4 leading-relaxed text-gray-500">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-        dolorum aliquam, quibusdam aperiam voluptatum.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
+            dolorum aliquam, quibusdam aperiam voluptatum.
         </p>
 
         <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
@@ -102,7 +102,7 @@ return (
                 shadow={false}
                 type="email"
                 label="Email"
-                placeholder="With regex validation"
+                placeholder="somebody@example.com"
                 fullWidth
             />
         </div>
@@ -126,9 +126,9 @@ return (
                 <select
                     class="appearance-none block w-full bg-slate-300 text-black px-4 py-2 placeholder-white placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
                     >
-                <option>What is your favorite artist?</option>
-                <option>What is your mother's name?</option>
-                <option>Are you gay or not?</option>
+                    <option>What is your favorite artist?</option>
+                    <option>What is your mother's name?</option>
+                    <option>Are you gay or not?</option>
                 </select>
             </div>
             
@@ -167,16 +167,15 @@ return (
         </div>
 
         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <button 
-            type="submit"
-            class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-            >
-            Create an account
-            </button>
+            <Button type="submit" shadow color="primary" auto>
+                Create an account
+            </Button>
 
             <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-            Already have an account?
-            <a href="#" class="text-gray-700 underline">Log in</a>.
+                Already have an account?
+                <Link href="/login">
+                    Log in
+                </Link>
             </p>
         </div>
         </form>

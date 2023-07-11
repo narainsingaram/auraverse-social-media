@@ -1,14 +1,17 @@
 import { useState } from "react";
+import React from 'react';
 import axios from "axios";
 import {
 Card,
 Spacer,
 Button,
 Text,
+Link,
 Input,
 Row,
 Checkbox,
 Container,
+useInput,
 } from "@nextui-org/react";
 import {toast} from "react-toastify";
 import {Modal} from 'antd';
@@ -34,6 +37,7 @@ const handleSubmit = async (e) => {
         toast.error(err.response.data);
     }
 };
+
 
 return (
 <div class="bg-white">
@@ -74,74 +78,67 @@ return (
         </h1>
 
         <p class="mt-4 leading-relaxed text-gray-500">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-        dolorum aliquam, quibusdam aperiam voluptatum.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
+            dolorum aliquam, quibusdam aperiam voluptatum.
         </p>
 
         <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
-        <div class="col-span-6 sm:col-span-3">
-            <label
-            for="FirstName"
-            class="block text-sm font-medium text-gray-700"
-            >
-            First Name
-            </label>
-
-            <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-        </div>
-
         <div class="col-span-6">
-            <label for="Email" class="block text-sm font-medium text-gray-700">
-            Email
-            </label>
-
-            <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+            <Input 
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                label="Full Name" 
+                placeholder="Guillermo Rauch" 
+                fullWidth
             />
         </div>
 
         <div class="col-span-6 sm:col-span-3">
-            <label
-            for="Password"
-            class="block text-sm font-medium text-gray-700"
-            >
-            Password
-            </label>
+            <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                clearable
+                shadow={false}
+                type="email"
+                label="Email"
+                placeholder="somebody@example.com"
+                fullWidth
+            />
+        </div>
 
-            <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+        <div class="col-span-6 sm:col-span-3">
+            <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                clearable
+                shadow={false}
+                type="password"
+                label="Password"
+                placeholder="At least 8 characters"
+                fullWidth
             />
         </div>
 
 
         <div class="col-span-6">
-                <label class="text-black">Choose a Question</label>
+            <label class="text-black">Choose a Question</label>
                 <select
                     class="appearance-none block w-full bg-slate-300 text-black px-4 py-2 placeholder-white placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
                     >
-                <option>What is your favorite artist?</option>
-                <option>What is your mother's name?</option>
-                <option>Are you gay or not?</option>
+                    <option>What is your favorite artist?</option>
+                    <option>What is your mother's name?</option>
+                    <option>Are you gay or not?</option>
                 </select>
-            </div>
-            
-            <input
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-red-400 text-sm text-gray-700 shadow-sm"
-            />
+                <br></br>
+                <Input 
+                    type="text"
+                    value={secret}
+                    onChange={(e) => setSecret(e.target.value)}
+                    placeholder="Answer the Question You've Selected Above" 
+                    fullWidth
+                />
+        </div>
 
         <div class="col-span-6">
             <label for="MarketingAccept" class="flex gap-4">
@@ -171,16 +168,15 @@ return (
         </div>
 
         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <button 
-            type="submit"
-            class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-            >
-            Create an account
-            </button>
+            <Button type="submit" shadow color="primary" auto>
+                Create an account
+            </Button>
 
             <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-            Already have an account?
-            <a href="#" class="text-gray-700 underline">Log in</a>.
+                Already have an account?
+                <Link href="/login">
+                    Log in
+                </Link>
             </p>
         </div>
         </form>
@@ -190,12 +186,15 @@ return (
     <div className="row">
         <div className="col">
             <Modal
-                title="Successful Registration"
+                title="Time to Explore Auraverse"
                 visible={ok}
                 onCancel={() => setOk(false)}
                 footer={null}
             >
-            <p>Nice!</p>
+            <p>Congratulations! You just created an account.</p>
+                <Link href="/login">
+                    Time to Login!
+                </Link>
             </Modal>
         </div>
     </div>

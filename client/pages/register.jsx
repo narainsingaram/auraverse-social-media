@@ -121,23 +121,24 @@ return (
         </div>
 
 
-        <div class="col-span-6">
-            <label class="text-black">Choose a Question</label>
+        <div class="col-span-6 sm:col-span-3">
                 <select
-                    class="appearance-none block w-full bg-slate-300 text-black px-4 py-2 placeholder-white placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
+                    class="appearance-none block w-full bg-gray-300 rounded-xl text-gray-400 px-4 py-2 placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
                     >
                     <option>What is your favorite artist?</option>
                     <option>What is your mother's name?</option>
                     <option>Are you gay or not?</option>
                 </select>
-                <br></br>
-                <Input 
-                    type="text"
-                    value={secret}
-                    onChange={(e) => setSecret(e.target.value)}
-                    placeholder="Answer the Question You've Selected Above" 
-                    fullWidth
-                />
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+            <Input 
+                type="text"
+                value={secret}
+                onChange={(e) => setSecret(e.target.value)}
+                placeholder="Answer the Question You've Selected Above" 
+                fullWidth
+            />
         </div>
 
         <div class="col-span-6">

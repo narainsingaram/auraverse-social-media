@@ -7,6 +7,7 @@ export const register = async (req, res) => {
     //validate
     if(!name) return res.status(400).send('Name is required. Please provide a valid name');
     
+    if (!email) return res.status(400).send('Email is required. Please provide a valid email');
     const exist = await User.findOne({ email });
     if(exist) return res.status(400).send("Email already exists");
     

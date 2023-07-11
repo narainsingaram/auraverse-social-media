@@ -10,24 +10,29 @@ Row,
 Checkbox,
 Container,
 } from "@nextui-org/react";
+import {toast} from "react-toastify";
+import {Modal} from 'antd';
 
 const Register = () => {
 const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [secret, setSecret] = useState("");
+const [ok, setOk] = useState(false);
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-    .post("http://localhost:8000/api/register", {
-        name,
-        email,
-        password,
-        secret,
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    try {
+        const res = await axios.post("http://localhost:8000/api/register", {
+            name,
+            email,
+            password,
+            secret,
+        });
+        setOk(res.data.ok);
+    } catch (err) {
+        toast.error(err.response.data);
+    }
 };
 
 return (
@@ -182,6 +187,18 @@ return (
     </div>
     </main>
 </div>
+    <div className="row">
+        <div className="col">
+            <Modal
+                title="Successful Registration"
+                visible={ok}
+                onCancel={() => setOk(false)}
+                footer={null}
+            >
+            <p>Nice!</p>
+            </Modal>
+        </div>
+    </div>
 </div>
 
 

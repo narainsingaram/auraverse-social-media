@@ -85,12 +85,12 @@ return (
         <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
         <div class="col-span-6">
             <Input 
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            label="Full Name" 
-            placeholder="Guillermo Rauch" 
-            fullWidth
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                label="Full Name" 
+                placeholder="Guillermo Rauch" 
+                fullWidth
             />
         </div>
 
@@ -109,20 +109,20 @@ return (
 
         <div class="col-span-6 sm:col-span-3">
             <Input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            clearable
-            shadow={false}
-            type="password"
-            label="Password"
-            placeholder="At least 8 characters"
-            fullWidth
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                clearable
+                shadow={false}
+                type="password"
+                label="Password"
+                placeholder="At least 8 characters"
+                fullWidth
             />
         </div>
 
 
         <div class="col-span-6">
-                <label class="text-black">Choose a Question</label>
+            <label class="text-black">Choose a Question</label>
                 <select
                     class="appearance-none block w-full bg-slate-300 text-black px-4 py-2 placeholder-white placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
                     >
@@ -130,14 +130,15 @@ return (
                     <option>What is your mother's name?</option>
                     <option>Are you gay or not?</option>
                 </select>
-            </div>
-            
-            <input
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            class="mt-1 w-full rounded-md border-gray-200 bg-red-400 text-sm text-gray-700 shadow-sm"
-            />
+                <br></br>
+                <Input 
+                    type="text"
+                    value={secret}
+                    onChange={(e) => setSecret(e.target.value)}
+                    placeholder="Answer the Question You've Selected Above" 
+                    fullWidth
+                />
+        </div>
 
         <div class="col-span-6">
             <label for="MarketingAccept" class="flex gap-4">

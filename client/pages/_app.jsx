@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import "antd/disc/antd.css";
 
 function MyApp({ Component, pageProps, router }) {
-    const hideNavRegister = router.pathname === "/register"; // Check if the current route is '/register'
+    const hideNavRegister = router.pathname === "/register" || router.pathname === "/login";
     
     return (
         <>

@@ -15,6 +15,8 @@ useInput,
 } from "@nextui-org/react";
 import {toast} from "react-toastify";
 import {Modal} from 'antd';
+import { SyncOutlined } from '@ant-design/icons';
+import AuthForm from "../components/forms/auth_form.js";
 
 const Register = () => {
 const [name, setName] = useState("");
@@ -22,19 +24,27 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [secret, setSecret] = useState("");
 const [ok, setOk] = useState(false);
+const [loading, setLoading] = useState(false);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post("http://localhost:8000/api/register", {
+        setLoading(true);
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API}/register`, {
             name,
             email,
             password,
             secret,
         });
+        setName('');
+        setEmail('');
+        setPassword('');
+        setSecret('');
         setOk(res.data.ok);
+        setLoading(false);
     } catch (err) {
         toast.error(err.response.data);
+        setLoading(false);
     }
 };
 
@@ -82,108 +92,23 @@ return (
             dolorum aliquam, quibusdam aperiam voluptatum.
         </p>
 
-        <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
-        <div class="col-span-6">
-            <Input 
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                label="Full Name" 
-                placeholder="Guillermo Rauch" 
-                fullWidth
-            />
-        </div>
-
-        <div class="col-span-6 sm:col-span-3">
-            <Input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                clearable
-                shadow={false}
-                type="email"
-                label="Email"
-                placeholder="somebody@example.com"
-                fullWidth
-            />
-        </div>
-
-        <div class="col-span-6 sm:col-span-3">
-            <Input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                clearable
-                shadow={false}
-                type="password"
-                label="Password"
-                placeholder="At least 8 characters"
-                fullWidth
-            />
-        </div>
-
-
-        <div class="col-span-6 sm:col-span-3">
-                <select
-                    class="appearance-none block w-full bg-gray-300 rounded-xl text-gray-400 px-4 py-2 placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
-                    >
-                    <option>What is your favorite artist?</option>
-                    <option>What is your mother's name?</option>
-                    <option>Are you gay or not?</option>
-                </select>
-        </div>
-
-        <div class="col-span-6 sm:col-span-3">
-            <Input 
-                type="text"
-                value={secret}
-                onChange={(e) => setSecret(e.target.value)}
-                placeholder="Answer the Question You've Selected Above" 
-                fullWidth
-            />
-        </div>
-
-        <div class="col-span-6">
-            <label for="MarketingAccept" class="flex gap-4">
-            <input
-                type="checkbox"
-                id="MarketingAccept"
-                name="marketing_accept"
-                class="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
-            />
-
-            <span class="text-sm text-gray-700">
-                I want to receive emails about events, product updates and
-                company announcements.
-            </span>
-            </label>
-        </div>
-
-        <div class="col-span-6">
-            <p class="text-sm text-gray-500">
-            By creating an account, you agree to our
-            <a href="#" class="text-gray-700 underline">
-                terms and conditions
-            </a>
-            and
-            <a href="#" class="text-gray-700 underline">privacy policy</a>.
-            </p>
-        </div>
-
-        <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-            <Button type="submit" shadow color="primary" auto>
-                Create an account
-            </Button>
-
-            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                Already have an account?
-                <Link href="/login">
-                    Log in
-                </Link>
-            </p>
-        </div>
-        </form>
+        <AuthForm
+            handleSubmit={handleSubmit}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            secret={secret}
+            setSecret={setSecret}
+            loading={loading}
+        />
     </div>
     </main>
 </div>
+
+
     <div className="row">
         <div className="col">
             <Modal
@@ -200,7 +125,6 @@ return (
         </div>
     </div>
 </div>
-
 
 );
 };

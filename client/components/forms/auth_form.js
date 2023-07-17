@@ -18,10 +18,10 @@ const AuthForm = ({
     email, setEmail, 
     password, setPassword, 
     secret, setSecret, 
-    loading,
+    loading, page
 }) => (
     <form onSubmit={handleSubmit} class="mt-8 grid grid-cols-6 gap-6">
-    <div class="col-span-6">
+    {page !== "login" && (<div class="col-span-6">
         <Input 
             type="text"
             value={name}
@@ -30,9 +30,9 @@ const AuthForm = ({
             placeholder="Guillermo Rauch" 
             fullWidth
         />
-    </div>
+    </div>  )}
 
-    <div class="col-span-6 sm:col-span-3">
+    <div className={page !== 'login' ? 'col-span-6 sm:col-span-3' : 'col-span-6'}>
         <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -45,7 +45,7 @@ const AuthForm = ({
         />
     </div>
 
-    <div class="col-span-6 sm:col-span-3">
+    <div className={page !== 'login' ? 'col-span-6 sm:col-span-3' : 'col-span-6'}>
         <Input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -59,7 +59,7 @@ const AuthForm = ({
     </div>
 
 
-    <div class="col-span-6 sm:col-span-3">
+    {page !== "login" && (<div class="col-span-6 sm:col-span-3">
             <select
                 class="appearance-none block w-full bg-gray-300 rounded-xl text-gray-400 px-4 py-2 placeholder-opacity-50 focus:outline-none focus:bg-opacity-30 focus:placeholder-opacity-70"
                 >
@@ -67,9 +67,10 @@ const AuthForm = ({
                 <option>What is your mother's name?</option>
                 <option>Are you gay or not?</option>
             </select>
-    </div>
+    </div>  
+        )}
 
-    <div class="col-span-6 sm:col-span-3">
+    {page !== "login" && (<div class="col-span-6 sm:col-span-3">
         <Input 
             type="text"
             value={secret}
@@ -78,8 +79,9 @@ const AuthForm = ({
             fullWidth
         />
     </div>
+    )}
 
-    <div class="col-span-6">
+    {page !== "login" && (<div class="col-span-6">
         <label for="MarketingAccept" class="flex gap-4">
         <input
             type="checkbox"
@@ -94,7 +96,9 @@ const AuthForm = ({
         </span>
         </label>
     </div>
+    )}
 
+    {page !== "login" && (
     <div class="col-span-6">
         <p class="text-sm text-gray-500">
         By creating an account, you agree to our
@@ -105,18 +109,17 @@ const AuthForm = ({
         <a href="#" class="text-gray-700 underline">privacy policy</a>.
         </p>
     </div>
-
+    )}
     <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-        <Button disabled={!name || !email || !password || !secret} type="submit" shadow color="primary" auto>
+        <Button disabled={page !== "login" ? !name || !email || !password || !secret : !email || !password} type="submit" shadow color="primary" auto>
             {loading ? <SyncOutlined spin className="px-2 py-1"/>: ""}
-            Create an account
+            {page == "register" ? "Create an Account": "Login"}
         </Button>
 
         <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-            Already have an account?
-            <Link href="/login">
-                Log in
-            </Link>
+            {page == "register" ? 
+            (<Link href="/login">Already have an account?</Link>) : 
+            (<Link href="/register">Don't have an account yet?</Link>)}
         </p>
     </div>
     </form>

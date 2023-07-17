@@ -103,6 +103,8 @@ return (
             secret={secret}
             setSecret={setSecret}
             loading={loading}
+            page="register"
+            
         />
     </div>
     </main>

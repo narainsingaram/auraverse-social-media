@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
             email,
             password,
         });
-        router.push('/')
+        console.log(data);
     } catch (err) {
         toast.error(err.response.data);
         setLoading(false);

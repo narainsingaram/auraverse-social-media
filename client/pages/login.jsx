@@ -53,10 +53,10 @@
         console.log(user, token); // Output the user and token to the console
     
         } catch (err) {
-        toast.error(err?.response?.data || "An error occurred");
-        console.log(err);
+            toast.error(err?.response?.data || "An error occurred");
+            console.log(err);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 

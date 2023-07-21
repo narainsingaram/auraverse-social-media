@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from 'react';
 import axios from "axios";
 import {
@@ -18,11 +18,14 @@ import {Modal} from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import AuthForm from "../components/forms/auth_form.js";
 import {useRouter} from 'next/router';
+import { UserContext } from '../context';
 
 const Login = () => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
+
+const [state, setState] = useContext(UserContext);
 
 const router = useRouter();
 
@@ -34,13 +37,17 @@ const handleSubmit = async (e) => {
             email,
             password,
         });
-        console.log(res.data); // Display the login information received from the server
+        // console.log(res.data); // Display the login information received from the server
+        setState({
+            user: data.user,
+            token: data.token,
+        })
+
     } catch (err) {
         toast.error(err?.response?.data || "An error occurred");
         setLoading(false);
     }
 };
-
 
 return (
 <div class="bg-white">

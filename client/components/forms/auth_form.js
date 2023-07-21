@@ -46,7 +46,7 @@ const AuthForm = ({
     </div>
 
     <div className={page !== 'login' ? 'col-span-6 sm:col-span-3' : 'col-span-6'}>
-        <Input
+        <Input.Password
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             clearable

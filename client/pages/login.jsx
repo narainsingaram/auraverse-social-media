@@ -34,9 +34,9 @@ const handleSubmit = async (e) => {
             email,
             password,
         });
-        console.log(data);
+        console.log(res.data); // Display the login information received from the server
     } catch (err) {
-        toast.error(err.response.data);
+        toast.error(err?.response?.data || "An error occurred");
         setLoading(false);
     }
 };

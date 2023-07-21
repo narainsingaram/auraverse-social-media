@@ -1,3 +1,4 @@
+import {UserProvider} from '../context/';
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { CssBaseline } from "@nextui-org/react";
 import Nav from '../components/Nav.js';
@@ -11,13 +12,13 @@ function MyApp({ Component, pageProps, router }) {
     const hideNavRegister = router.pathname === "/register" || router.pathname === "/login";
     
     return (
-        <>
+        <UserProvider>
             <div style={{ fontFamily: 'Be Vietnam Pro, sans-serif' }}>
                 {!hideNavRegister  && <Nav />} {/* Render Nav only if hideNav is false */}
                 <ToastContainer />
                 <Component {...pageProps} />
             </div>
-        </>
+        </UserProvider>
     )
 }
 

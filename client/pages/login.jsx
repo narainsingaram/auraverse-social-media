@@ -1,4 +1,4 @@
-    import { useState, useContext } from "react";
+    import { useState, useContext, useEffect } from "react";
     import React from 'react';
     import axios from "axios";
     import {
@@ -57,6 +57,8 @@
             setLoading(false);
         }
     };
+
+    if(state && state.token) router.push('/');
 
     return (
     <div class="bg-white">

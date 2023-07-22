@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from 'react';
 import axios from "axios";
 import {
@@ -17,6 +17,8 @@ import {toast} from "react-toastify";
 import {Modal} from 'antd';
 import { SyncOutlined } from '@ant-design/icons';
 import AuthForm from "../components/forms/auth_form.js";
+import { UserContext } from '../context';
+import { useRouter } from 'next/router';
 
 const Register = () => {
 const [name, setName] = useState("");
@@ -25,6 +27,9 @@ const [password, setPassword] = useState("");
 const [secret, setSecret] = useState("");
 const [ok, setOk] = useState(false);
 const [loading, setLoading] = useState(false);
+
+const [state] = useContext(UserContext);
+const router = useRouter();
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +52,8 @@ const handleSubmit = async (e) => {
         setLoading(false);
     }
 };
+
+if(state && state.token) router.push('/');
 
 
 return (

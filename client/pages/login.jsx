@@ -49,9 +49,7 @@
     
         // Save the user and token data to local storage
         window.localStorage.setItem('auth', JSON.stringify({ user, token }));
-    
-        console.log(user, token); // Output the user and token to the console
-    
+        router.push('/');
         } catch (err) {
             toast.error(err?.response?.data || "An error occurred");
             console.log(err);

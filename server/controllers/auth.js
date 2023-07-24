@@ -67,3 +67,6 @@ export const login = async(req, res) => {
     };
 };
 
+export const currentUser = async () => {
+    console.log(req.headers);
+}

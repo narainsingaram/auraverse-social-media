@@ -23,8 +23,8 @@ const Nav = () => {
             <Navbar.Content hideIn="xs" variant="highlight-rounded">
                 <Navbar.Link isActive={router.pathname === '/'} href="/">Home</Navbar.Link>
                 <Navbar.Link isActive={router.pathname === '/user/dashboard'} href="/user/dashboard">Dashboard</Navbar.Link>
-                <Badge color="primary" enableShadow disableOutline content="AI">
-                    <Navbar.Link isActive={router.pathname === '/chatbot'} href="/chatbot">Lumi</Navbar.Link>
+                <Badge color="primary" enableShadow disableOutline content="Lumi">
+                    <Navbar.Link isActive={router.pathname === '/chatbot'} href="/chatbot">AI</Navbar.Link>
                 </Badge>
                 <Navbar.Link href="#">Company</Navbar.Link>
             </Navbar.Content>

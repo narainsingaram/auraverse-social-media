@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_KEY = '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';
+const API_KEY = 'YOUR_OPENAI_API_KEY'; // Replace with your actual OpenAI API key
 
 const HiddenPanel = () => {
 const [isOpen, setIsOpen] = useState(false);

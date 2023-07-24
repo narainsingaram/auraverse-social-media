@@ -37,16 +37,16 @@
             email,
             password,
         });
-    
+
         // Extract user and token data from the response
         const { user, token } = res.data;
-    
+
         // Update the state with the received user and token data
         setState({
             user: user,
             token: token,
         });
-    
+
         // Save the user and token data to local storage
         window.localStorage.setItem('auth', JSON.stringify({ user, token }));
         router.push('/');

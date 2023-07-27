@@ -68,5 +68,6 @@ export const login = async(req, res) => {
 };
 
 export const currentUser = async (req, res) => {
-    console.log(req.headers);
+    console.log("Request Headers:", req.headers);
+    // Rest of the logic for currentUser function
 }

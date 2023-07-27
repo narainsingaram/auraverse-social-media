@@ -67,6 +67,6 @@ export const login = async(req, res) => {
     };
 };
 
-export const currentUser = async () => {
+export const currentUser = async (req, res) => {
     console.log(req.headers);
 }

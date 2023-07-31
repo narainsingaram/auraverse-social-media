@@ -33,7 +33,7 @@
         e.preventDefault();
         try {
         setLoading(true);
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_API}/login`, {
+        const res = await axios.post(`$/login`, {
             email,
             password,
         });

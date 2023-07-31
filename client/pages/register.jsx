@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         setLoading(true);
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_API}/register`, {
+        const res = await axios.post(`/register`, {
             name,
             email,
             password,

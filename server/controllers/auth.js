@@ -69,13 +69,27 @@ export const login = async(req, res) => {
 
 export const currentUser = async (req, res) => {
     console.log("Request Headers:", req.user);
-    // Rest of the logic for currentUser function
 
     try {
-        const user = await User.findbyId(req.user._id);
-        res.json({ ok: true});
-    } catch {
-        console.log(err);
-        res.sendStatus(400);
+    // Find the user by ID using the findById method instead of findbyId
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+        // If the user is not found, return a 404 status
+        return res.sendStatus(404);
     }
-}
+
+    // Return the user data without the password and secret
+    user.password = undefined;
+    user.secret = undefined;
+
+    res.json({
+        ok: true,
+        user: user,
+    });
+    } catch (err) {
+    console.log(err);
+    // If any error occurs, return a 500 status
+    return res.sendStatus(500);
+    }
+};

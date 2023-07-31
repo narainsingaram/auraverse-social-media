@@ -26,14 +26,22 @@ import { useRouter } from "next/router";
         }, 
         function (error) {
             let res = error.response;
-            if(res.status === 401 && res.config && !res.config.__isRetryRequest) {
-                setState(null);
-                window.localStorage.removeItem("auth");
-                router.push("/login");
+            if (res) {
+                // Check specific error status codes and handle them accordingly
+                if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+                    setState(null);
+                    window.localStorage.removeItem("auth");
+                    router.push("/login");
+                }
+                // You can add more custom error handling here for other status codes if needed
+            } else {
+                // Handle network errors or other cases where error.response is not available
+                // Let the original error handling continue
+                return Promise.reject(error);
             }
-
         }
     );
+    
 
     return (
         <UserContext.Provider value={[state, setState]}>

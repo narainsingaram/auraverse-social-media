@@ -1,4 +1,5 @@
 import express from "express";
+import User from "../models/user";
 const router = express.Router();
 
 // Import the controller functions from the appropriate file

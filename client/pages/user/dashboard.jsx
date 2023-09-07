@@ -21,7 +21,6 @@ import UserRoute from "../../components/routes/UserRoute";
 const Dashboard = () => {
     const[state,setState ] = useContext(UserContext);
     return (
-        <UserRoute>
         <Container>
             <Container>
                 <h1 className="my-16 bg-blue-300 p-4 rounded-xl text-2xl">Posts</h1>
@@ -37,8 +36,6 @@ const Dashboard = () => {
 
             </Container>
         </Container>
-        <div>hi</div>
-        </UserRoute>
     );
 };
 

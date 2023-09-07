@@ -1,40 +1,50 @@
-import { useContext } from 'react';
-import { UserContext } from '../../context';
-
-import {
-Card,
-Spacer,
-Button,
-Text,
-Link,
-Input,
-Row,
-Checkbox,
-Container,
-useInput,
-} from "@nextui-org/react";
-;
-import UserRoute from "../../components/routes/UserRoute";
-///import CreatePostForm from "../../components/forms/CreatePortForm";
-
+import { useContext } from "react";
+import { UserContext } from "../../context";
+import CreatePostForm from "../../components/forms/CreatePostForm";
 
 const Dashboard = () => {
-    const[state,setState ] = useContext(UserContext);
-    return (
-        <Container>
-            <Container>
-                <h1 className="my-16 bg-blue-300 p-4 rounded-xl text-2xl">Posts</h1>
-            </Container>
-            <Container>
-                <p className="my-16 bg-blue-300 p-4 rounded-xl">This is the Dashboard Page of Auraverse and can only be viewed by registered users.</p>
-            </Container>
-            <Container className="row py-3">
-                <Container className="col-md-8">
-                    </Container>
-                <Container className="col-md-4">Sidebar</Container>
-            </Container>
-        </Container>
-    );
+const [state, setState] = useContext(UserContext);
+
+return (
+    <div className="bg-gray-100 min-h-screen">
+    
+    {/* Header */}
+    <header className="bg-indigo-600 text-white">
+        <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold tracking-tight">Dashboard</h1>
+        </div>
+    </header>
+    
+    {/* Main Content */}
+    <main className="container mx-auto px-4 py-8">
+    
+        {/* Welcome Message */}
+        <section className="mb-12">
+        <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-2xl font-bold mb-4">Welcome to Auraverse!</h2>
+            <p className="text-gray-700">This is your dashboard, where you can share your thoughts and connect with others.</p>
+        </div>
+        </section>
+        
+        {/* Create Post Form */}
+        <section className="mb-12">
+        <CreatePostForm />
+        </section>
+        
+        {/* Posts Section */}
+        <section>
+        <h2 className="text-3xl font-bold mb-8">Your Posts</h2>
+        <div className="grid gap-6 lg:grid-cols-3">
+        
+            {/* Render Posts Here */}
+            
+        </div>
+        </section>
+        
+    </main>
+    
+    </div>
+);
 };
 
 export default Dashboard;

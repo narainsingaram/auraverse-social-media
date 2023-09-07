@@ -15,7 +15,7 @@ const Nav = () => {
     return (
         <nav className="bg-gray-800 p-4">
             <div className="container mx-auto flex justify-between items-center">
-                <a href="#" className="text-white text-xl font-bold">Auraverse</a>
+                <a href="/" className="text-white text-xl font-bold">Auraverse</a>
 
                 <div className="hidden md:flex space-x-4">
                     <a className={`text-white ${router.pathname === '/user/dashboard' ? 'font-semibold' : ''}`} href="/user/dashboard">Dashboard</a>

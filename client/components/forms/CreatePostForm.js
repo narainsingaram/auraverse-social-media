@@ -1,6 +1,6 @@
 import { Avatar, AvatarIcon } from "@nextui-org/react";
 
-const CreatePostForm = () => {
+const CreatePostForm = ({content, setContent, postSubmit}) => {
 return (
     <div className="bg-white rounded-lg shadow-lg p-4">
     <div className="flex items-center space-x-4 pb-4">
@@ -14,16 +14,18 @@ return (
         <span className="text-gray-500">1 hour ago</span>
         </div>
     </div>
-    <form className="pb-4">
+    <form className="pb-4" onSubmit={postSubmit}>
         <textarea
-        className="w-full p-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:ring-blue-400"
-        rows="4"
-        placeholder="What's on your mind?"
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:ring-blue-400"
+            rows="4"
+            placeholder="What's on your mind?"
         ></textarea>
     </form>
     <div className="flex justify-end">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
-        Post
+        <button onClick={postSubmit} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+            Post
         </button>
     </div>
     </div>

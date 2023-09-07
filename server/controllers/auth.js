@@ -69,7 +69,7 @@ export const login = async(req, res) => {
 
 export const currentUser = async (req, res) => {
     console.log("Request Headers:", req.user);
-    // Rest of the logic for currentUser function
+    // Rest of the logic for currentUser function fdsfsd
 
     try {
         const user = await User.findbyId(req.user._id);

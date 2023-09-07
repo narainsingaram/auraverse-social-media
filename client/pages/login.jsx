@@ -32,27 +32,30 @@
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-        setLoading(true);
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_API}/login`, {
-            email,
-            password,
-        });
+            setLoading(true);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API}/login`, {
+                email,
+                password,
+            });
 
-        // Extract user and token data from the response
-        const { user, token } = res.data;
-
-        // Update the state with the received user and token data
-        setState({
-            user: user,
-            token: token,
-        });
-
-        // Save the user and token data to local storage
-        window.localStorage.setItem('auth', JSON.stringify({ user, token }));
-        router.push('/');
+            // Handle successful login here (e.g., redirect the user)
+            router.push('/');
         } catch (err) {
-            toast.error(err?.response?.data || "An error occurred");
-            console.log(err);
+            if (err.response) {
+                // Handle specific error messages from the API
+                const errorData = err.response.data;
+                if (errorData.error === "invalid_credentials") {
+                    toast.error("Invalid email or password.");
+                } else if (errorData.error === "account_not_activated") {
+                    toast.error("Account not activated. Please check your email.");
+                } else {
+                    // Default error message for other errors from the API
+                    toast.error("An error occurred.");
+                }
+            } else {
+                // Handle other errors (e.g., network error)
+                toast.error("An error occurred. Please try again later.");
+            }
         } finally {
             setLoading(false);
         }

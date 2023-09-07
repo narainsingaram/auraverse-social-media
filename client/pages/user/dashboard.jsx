@@ -19,7 +19,7 @@
 
 
     const Dashboard = () => {
-        const[state,setState ] = useContext(UserContext);
+        const [state,setState ] = useContext(UserContext);
         return (
             <UserRoute>
             <Container>
